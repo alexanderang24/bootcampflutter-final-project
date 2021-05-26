@@ -1,4 +1,5 @@
-import 'package:cryptotracker/Authentication/LoginScreen.dart';
+import 'package:cryptotracker/pages/Login.dart';
+import 'package:cryptotracker/pages/dashboard.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
 
-      home: LoginScreen(),
+      home: Dashboard(),
       // initialRoute: '/',
       // routes: <String, WidgetBuilder>{
       //   '/': (context) => LoginScreen(),
