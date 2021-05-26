@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "327951302427",
+    "project_id": "sanbercode-flutter-bootcamp",
+    "storage_bucket": "sanbercode-flutter-bootcamp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:327951302427:android:e48260b42ec3f5b35f1dbe",
+        "android_client_info": {
+          "package_name": "com.example.cryptotracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "327951302427-ap8fmbmli8s10be8p62218mrn22p1602.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIA_Sm5lQjsRPtuLQ0dIE3_bh5yH_JJYU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "327951302427-ap8fmbmli8s10be8p62218mrn22p1602.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:327951302427:android:4f45941dd6410ba95f1dbe",
+        "android_client_info": {
+          "package_name": "com.example.sanberappflutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "327951302427-ap8fmbmli8s10be8p62218mrn22p1602.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIA_Sm5lQjsRPtuLQ0dIE3_bh5yH_JJYU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "327951302427-ap8fmbmli8s10be8p62218mrn22p1602.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
