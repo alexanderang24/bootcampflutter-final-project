@@ -2,6 +2,7 @@ import 'package:cryptotracker/pages/about.dart';
 import 'package:cryptotracker/pages/coins.dart';
 import 'package:cryptotracker/pages/home.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -64,7 +65,7 @@ class _DashboardState extends State<Dashboard> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
-                      Icons.search,
+                      FontAwesome5Brands.bitcoin,
                       color: currentTab == 1 ? Color(0xff3853a2) : Colors.grey,
                     ),
                     Text(
