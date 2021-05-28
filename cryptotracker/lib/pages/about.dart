@@ -1,8 +1,8 @@
 import 'dart:ui';
+import 'package:cryptotracker/utils/side_drawer.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
 import 'package:cryptotracker/pages/login.dart';
-import 'package:cryptotracker/pages/side_drawer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 

@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 class Coin {
-  final String name, symbol, price;
-  Coin(this.name, this.symbol, this.price);
+  final String name, symbol, price, image;
+  Coin(this.name, this.symbol, this.price, this.image);
 }
 
 CoinModel userModelFromJson(String str) => CoinModel.fromJson(json.decode(str));
@@ -13,10 +13,12 @@ class CoinModel {
     this.name,
     this.symbol,
     this.price,
+    this.image,
   });
   String name;
   String symbol;
   String price;
+  String image;
 
   factory CoinModel.fromJson(Map<String, dynamic> json) => CoinModel(
         name: json["name"],

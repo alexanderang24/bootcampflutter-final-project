@@ -1,5 +1,5 @@
 import 'package:cryptotracker/pages/Login.dart';
-import 'package:cryptotracker/pages/dashboard.dart';
+import 'package:cryptotracker/utils/dashboard.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 

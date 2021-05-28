@@ -1,4 +1,4 @@
-import 'package:cryptotracker/pages/dashboard.dart';
+import 'package:cryptotracker/utils/dashboard.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 

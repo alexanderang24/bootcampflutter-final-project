@@ -1,6 +1,6 @@
 import 'package:cryptotracker/pages/about.dart';
 import 'package:cryptotracker/pages/coins.dart';
-import 'package:cryptotracker/pages/home.dart';
+import 'package:cryptotracker/pages/news.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
@@ -12,12 +12,12 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   int currentTab = 0;
   final List<Widget> screens = [
-    Home(),
+    News(),
     Coins(),
     About(),
   ];
   final PageStorageBucket bucket = PageStorageBucket();
-  Widget currentScreen = Home();
+  Widget currentScreen = News();
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class _DashboardState extends State<Dashboard> {
                 minWidth: 40,
                 onPressed: () {
                   setState(() {
-                    currentScreen = Home();
+                    currentScreen = News();
                     currentTab = 0;
                   });
                 },
@@ -43,11 +43,11 @@ class _DashboardState extends State<Dashboard> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
-                      Icons.home,
+                      FontAwesome.newspaper_o,
                       color: currentTab == 0 ? Color(0xff3853a2) : Colors.grey,
                     ),
                     Text(
-                      'Home',
+                      'News',
                       style: TextStyle(color: currentTab == 0 ? Color(0xff3853a2) : Colors.grey),
                     ),
                   ],

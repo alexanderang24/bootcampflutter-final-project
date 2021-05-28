@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:cryptotracker/model/coin_model.dart';
+import 'package:cryptotracker/models/coin_model.dart';
 import 'package:cryptotracker/pages/login.dart';
-import 'package:cryptotracker/pages/side_drawer.dart';
+import 'package:cryptotracker/utils/side_drawer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -24,15 +24,13 @@ class _CoinsState extends State<Coins> {
       "bitcoin",
       "ethereum",
       "binance-coin",
-      // "cardano",
-      // "xrp",
-      // "dogecoin",
-      // "polkadot",
-      // "solana",
-      // "tron",
-      // "monero",
-      // "pancakeswap",
-      // "bakerytoken",
+      "cardano",
+      "xrp",
+      "dogecoin",
+      "polkadot",
+      "solana",
+      "tron",
+      "pancakeswap",
     ];
     List<CoinModel> coinList = [];
 
@@ -40,6 +38,7 @@ class _CoinsState extends State<Coins> {
       var response = await http.get(Uri.parse("https://api.coincap.io/v2/assets/$item"));
       var data = jsonDecode(response.body)["data"];
       CoinModel coin = CoinModel.fromJson(data);
+      coin.image = "assets/icon/$item.png";
       coinList.add(coin);
     }
     return coinList;
@@ -110,7 +109,8 @@ class _CoinsState extends State<Coins> {
                   return ListTile(
                     title: Text(snapshot.data[i].name),
                     subtitle: Text(snapshot.data[i].symbol),
-                    trailing: Text(snapshot.data[i].price),
+                    trailing: Text(snapshot.data[i].price + " USD"),
+                    leading: Image.asset(snapshot.data[i].image),
                   );
                 },
               );
