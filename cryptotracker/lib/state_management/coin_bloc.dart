@@ -8,30 +8,31 @@ import 'package:http/http.dart' as http;
 class CoinBloc {
   List<CoinModel> _coinModel;
 
-  final _counterStateController = StreamController<List<CoinModel>>();
-  Stream<List<CoinModel>> get counter => _counterStateController.stream;
+  final _coinStateController = StreamController<List<CoinModel>>.broadcast();
+  Stream<List<CoinModel>> get coin => _coinStateController.stream;
 
-  final _counterEventController = StreamController<EventManager>();
-  Sink<EventManager> get counterEventSink => _counterEventController.sink;
+  final _coinEventController = StreamController<EventManager>();
+  Sink<EventManager> get coinEventSink => _coinEventController.sink;
 
   CoinBloc() {
-    _counterEventController.stream.listen(_mapEventTotState);
+    _coinEventController.stream.listen(_mapEventTotState);
   }
 
   void _mapEventTotState(EventManager event) async {
-    print("bloc triggered");
-    // _coinModel = CoinModel(name: "Bitcoin", symbol: "BTC", price: "\$40,000.000");
-
+    print("event triggered");
+    _coinModel = null;
     _coinModel = await getPrice();
-    print("bloc coin model: " + _coinModel.toString());
-
-    _counterStateController.sink.add(_coinModel);
-    print("bloc completed");
+    print("refreshed with new data: " + _coinModel[0].price);
+    _coinStateController.sink.add(_coinModel);
   }
 
   void dispose() {
-    _counterEventController.close();
-    _counterStateController.close();
+    _coinEventController.close();
+    _coinStateController.close();
+  }
+
+  clearModel() {
+    _coinModel = null;
   }
 
   getPrice() async {

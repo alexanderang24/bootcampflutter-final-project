@@ -10,12 +10,12 @@ import 'package:cryptotracker/utils/side_drawer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class News extends StatefulWidget {
+class Home extends StatefulWidget {
   @override
-  _NewsState createState() => _NewsState();
+  _HomeState createState() => _HomeState();
 }
 
-class _NewsState extends State<News> {
+class _HomeState extends State<Home> {
   final _bloc = CoinBloc();
 
   Future<void> _signOut() async {
@@ -26,7 +26,7 @@ class _NewsState extends State<News> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("News"),
+        title: Text("Home"),
         actions: <Widget>[
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -98,10 +98,10 @@ class _NewsState extends State<News> {
                 SizedBox(width: 30),
                 TextButton.icon(
                   onPressed: () {
-                    _bloc.counterEventSink.add(ReadEvent());
+                    _bloc.coinEventSink.add(ReadEvent());
                   },
                   icon: Icon(Icons.refresh, color: Colors.white),
-                  label: Text("Get Data", style: TextStyle(color: Colors.white)),
+                  label: Text("Refresh", style: TextStyle(color: Colors.white)),
                   style: TextButton.styleFrom(backgroundColor: Colors.blue[300]),
                 ),
               ],
@@ -113,26 +113,35 @@ class _NewsState extends State<News> {
             height: 125.0,
             padding: EdgeInsets.only(left: 20.0),
             child: StreamBuilder(
-              stream: _bloc.counter,
-              initialData: [CoinModel(name: "No data", symbol: "Please Refresh", price: "-")],
+              stream: _bloc.coin,
+              initialData: null,
               builder: (context, snapshot) {
-                print("SNIP: " + snapshot.data.toString());
-                return ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  shrinkWrap: true,
-                  itemCount: snapshot.data.length,
-                  itemBuilder: (context, i) {
-                    return InkWell(
-                      child: Container(
-                        margin: EdgeInsets.only(right: 12.0),
-                        child: CoinCard(coinModel: snapshot.data[i]),
-                      ),
-                    );
-                  },
-                );
+                return FutureBuilder(
+                    builder: (context, snapshot) {
+                      if (snapshot.data == null) {
+                        return Container(
+                          child: Center(child: Text("Loading...")),
+                        );
+                      } else {
+                        return ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            shrinkWrap: true,
+                            itemCount: snapshot.data.length,
+                            itemBuilder: (context, i) {
+                              return InkWell(
+                                child: Container(
+                                  margin: EdgeInsets.only(right: 12.0),
+                                  child: CoinCard(coinModel: snapshot.data[i]),
+                                ),
+                              );
+                            });
+                      }
+                    },
+                    future: _bloc.getPrice());
               },
             ),
           ),
+
           SizedBox(height: 25.0),
           // Trending News
           Align(
