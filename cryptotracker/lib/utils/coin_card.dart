@@ -11,8 +11,8 @@ class CoinCard extends StatelessWidget {
       width: 150,
       padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 15.0),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15.0),
-        border: Border.all(color: Colors.grey, width: 1.0),
+        borderRadius: BorderRadius.circular(5.0),
+        border: Border.all(color: Color(0xff3853a2), width: 2.0),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

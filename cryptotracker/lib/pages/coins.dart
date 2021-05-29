@@ -79,11 +79,22 @@ class _CoinsState extends State<Coins> {
                     );
                   }
                   i--;
-                  return ListTile(
-                    title: Text(snapshot.data[i].name),
-                    subtitle: Text(snapshot.data[i].symbol),
-                    trailing: Text(snapshot.data[i].price + " USD"),
-                    leading: Image.asset(snapshot.data[i].image),
+                  return Column(
+                    children: [
+                      Divider(
+                        thickness: 1,
+                        color: Color(0xff3853a2),
+                        indent: 20,
+                        endIndent: 20,
+                        height: 10,
+                      ),
+                      ListTile(
+                        title: Text(snapshot.data[i].name),
+                        subtitle: Text(snapshot.data[i].symbol),
+                        trailing: Text(snapshot.data[i].price + " USD"),
+                        leading: Image.asset(snapshot.data[i].image),
+                      ),
+                    ],
                   );
                 },
               );

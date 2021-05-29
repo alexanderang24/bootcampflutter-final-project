@@ -11,8 +11,8 @@ class SecondaryCard extends StatelessWidget {
       width: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15.0),
-        border: Border.all(color: Colors.grey, width: 1.0),
+        borderRadius: BorderRadius.circular(5.0),
+        border: Border.all(color: Color(0xff3853a2), width: 1.0),
       ),
       child: Row(
         children: [
@@ -20,7 +20,7 @@ class SecondaryCard extends StatelessWidget {
             width: 90.0,
             height: 135.0,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12.0),
+              borderRadius: BorderRadius.circular(5.0),
               image: DecorationImage(
                 image: NetworkImage(news.image),
                 fit: BoxFit.cover,

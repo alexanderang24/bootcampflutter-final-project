@@ -1,4 +1,3 @@
-import 'package:cryptotracker/models/coin_model.dart';
 import 'package:cryptotracker/models/news_model.dart';
 import 'package:cryptotracker/pages/login.dart';
 import 'package:cryptotracker/state_management/coin_bloc.dart';
