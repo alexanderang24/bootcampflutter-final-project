@@ -1,5 +1,4 @@
 import 'package:cryptotracker/models/coin_model.dart';
-import 'package:cryptotracker/state_management/bloc_counter.dart';
 import 'package:flutter/material.dart';
 
 class CoinCard extends StatelessWidget {

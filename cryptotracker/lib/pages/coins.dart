@@ -1,11 +1,8 @@
-import 'dart:convert';
-
-import 'package:cryptotracker/models/coin_model.dart';
 import 'package:cryptotracker/pages/login.dart';
+import 'package:cryptotracker/state_management/coin_bloc.dart';
 import 'package:cryptotracker/utils/side_drawer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
 class Coins extends StatefulWidget {
   @override
@@ -13,42 +10,18 @@ class Coins extends StatefulWidget {
 }
 
 class _CoinsState extends State<Coins> {
+  final _bloc = CoinBloc();
   String priceBtc;
 
   Future<void> _signOut() async {
     await FirebaseAuth.instance.signOut();
   }
 
-  getPrice() async {
-    var items = [
-      "bitcoin",
-      "ethereum",
-      "binance-coin",
-      "cardano",
-      "xrp",
-      "dogecoin",
-      "polkadot",
-      "solana",
-      "tron",
-      "pancakeswap",
-    ];
-    List<CoinModel> coinList = [];
-
-    for (var item in items) {
-      var response = await http.get(Uri.parse("https://api.coincap.io/v2/assets/$item"));
-      var data = jsonDecode(response.body)["data"];
-      CoinModel coin = CoinModel.fromJson(data);
-      coin.image = "assets/icon/$item.png";
-      coinList.add(coin);
-    }
-    return coinList;
-  }
-
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     setState(() {
-      getPrice();
+      _bloc.getPrice();
     });
   }
 
@@ -116,7 +89,7 @@ class _CoinsState extends State<Coins> {
               );
             }
           },
-          future: getPrice(),
+          future: _bloc.getPrice(),
         ),
       ),
     );

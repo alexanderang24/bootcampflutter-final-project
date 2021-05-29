@@ -1,7 +1,7 @@
 import 'package:cryptotracker/models/coin_model.dart';
 import 'package:cryptotracker/models/news_model.dart';
 import 'package:cryptotracker/pages/login.dart';
-import 'package:cryptotracker/state_management/bloc_counter.dart';
+import 'package:cryptotracker/state_management/coin_bloc.dart';
 import 'package:cryptotracker/state_management/event_manager.dart';
 import 'package:cryptotracker/utils/coin_card.dart';
 import 'package:cryptotracker/utils/primary_card.dart';
@@ -16,7 +16,7 @@ class News extends StatefulWidget {
 }
 
 class _NewsState extends State<News> {
-  final _bloc = BlocCounter();
+  final _bloc = CoinBloc();
 
   Future<void> _signOut() async {
     await FirebaseAuth.instance.signOut();
@@ -98,10 +98,10 @@ class _NewsState extends State<News> {
                 SizedBox(width: 30),
                 TextButton.icon(
                   onPressed: () {
-                    _bloc.counterEventSink.add(IncrementEvent());
+                    _bloc.counterEventSink.add(ReadEvent());
                   },
                   icon: Icon(Icons.refresh, color: Colors.white),
-                  label: Text("Refresh", style: TextStyle(color: Colors.white)),
+                  label: Text("Get Data", style: TextStyle(color: Colors.white)),
                   style: TextButton.styleFrom(backgroundColor: Colors.blue[300]),
                 ),
               ],
@@ -114,18 +114,18 @@ class _NewsState extends State<News> {
             padding: EdgeInsets.only(left: 20.0),
             child: StreamBuilder(
               stream: _bloc.counter,
-              initialData: new CoinModel(name: "Please refresh", symbol: "-", price: "0"),
-              builder: (BuildContext context, AsyncSnapshot<CoinModel> snip) {
-                print("SNIP: " + snip.data.toString());
+              initialData: [CoinModel(name: "No data", symbol: "Please Refresh", price: "-")],
+              builder: (context, snapshot) {
+                print("SNIP: " + snapshot.data.toString());
                 return ListView.builder(
-                  itemCount: 3,
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
-                  itemBuilder: (context, index) {
+                  itemCount: snapshot.data.length,
+                  itemBuilder: (context, i) {
                     return InkWell(
                       child: Container(
                         margin: EdgeInsets.only(right: 12.0),
-                        child: CoinCard(coinModel: snip.data),
+                        child: CoinCard(coinModel: snapshot.data[i]),
                       ),
                     );
                   },
